@@ -1,20 +1,58 @@
 @import "tailwindcss";
 
+/* ── Custom Font Faces ───────────────────────────────────── */
+
+@font-face {
+  font-family: "Bell MT";
+  src: url("/fonts/Bell MT.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Didot LT Std";
+  src: url("/fonts/_DidotLTStd-Roman.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Didot LT Std";
+  src: url("/fonts/_DidotLTStd-Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Didot LT Std";
+  src: url("/fonts/_DidotLTStd-Headline.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Ferya Design Tokens ─────────────────────────────────── */
 
 @theme {
   /* Colors */
-  --color-gold: #C4A265;
-  --color-gold-light: #D4B87A;
-  --color-gold-dark: #A88A50;
-  --color-dark: #1A1A1A;
+  --color-primary: #896978;
+  --color-primary-light: #A38494;
+  --color-primary-dark: #6E5461;
+  --color-terracotta: #9D695A;
+  --color-dark: #242424;
   --color-body: #888888;
-  --color-cream: #F5F3EF;
+  --color-cream: #F7F5F0;
+  --color-dust: #E5DBD2;
   --color-white: #FFFFFF;
 
   /* Fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-sans: var(--font-cormorant), "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-logo: "Bell MT", "Goudy Old Style", Garamond, "Times New Roman", serif;
+  --font-accent: "Didot LT Std", Didot, "Bodoni MT", "Noto Serif Display", "GFS Didot", serif;
 }
 
 /* ── Base Styles ─────────────────────────────────────────── */
@@ -26,7 +64,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  color: var(--color-dark);
 }
 
 /* ── Smooth scrolling ────────────────────────────────────── */

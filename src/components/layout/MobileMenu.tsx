@@ -2,17 +2,19 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import LanguageToggle from "@/components/ui/LanguageToggle";
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "Design", href: "/design" },
-  { label: "Rentals", href: "/rentals" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Our Ethos", href: "/ethos" },
-  { label: "Services", href: "/services" },
-  { label: "Process", href: "/process" },
-  { label: "FAQ", href: "/faq" },
-];
+  { key: "home", href: "/" },
+  { key: "design", href: "/design" },
+  { key: "rentals", href: "/rentals" },
+  { key: "gallery", href: "/gallery" },
+  { key: "ethos", href: "/ethos" },
+  { key: "services", href: "/services" },
+  { key: "process", href: "/process" },
+  { key: "faq", href: "/faq" },
+] as const;
 
 interface MobileMenuProps {
   open: boolean;
@@ -20,7 +22,8 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
-  // Lock body scroll when open
+  const t = useTranslations("MobileMenu");
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -50,12 +53,17 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-cream px-6 py-4">
-          <span className="font-serif text-xl tracking-widest text-dark">
-            FERYA
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className="font-logo text-lg tracking-[0.25em] uppercase text-dark">
+              Ferya
+            </span>
+            <span className="font-accent text-[8px] tracking-[0.25em] uppercase text-dark/70 mt-0.5">
+              Event &amp; Decor
+            </span>
+          </div>
           <button
             onClick={onClose}
-            className="text-dark hover:text-gold transition-colors"
+            className="text-dark hover:text-primary transition-colors"
             aria-label="Close menu"
           >
             <svg
@@ -83,13 +91,16 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="block text-lg text-dark hover:text-gold transition-colors"
+                  className="block text-xl text-dark hover:text-primary transition-colors"
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               </li>
             ))}
           </ul>
+          <div className="mt-6 pt-6 border-t border-cream">
+            <LanguageToggle />
+          </div>
         </nav>
       </div>
     </>

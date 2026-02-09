@@ -2,16 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import MobileMenu from "./MobileMenu";
+import LanguageToggle from "@/components/ui/LanguageToggle";
+import Logo from "@/components/ui/Logo";
 
 const navLinks = [
-  { label: "Design", href: "/design" },
-  { label: "Rentals", href: "/rentals" },
-  { label: "Gallery", href: "/gallery" },
-];
+  { key: "design", href: "/design" },
+  { key: "rentals", href: "/rentals" },
+  { key: "gallery", href: "/gallery" },
+] as const;
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations("Navbar");
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-cream">
@@ -22,9 +26,9 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm tracking-wide text-dark hover:text-gold transition-colors"
+                className="text-base tracking-wide text-dark hover:text-primary transition-colors"
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             </li>
           ))}
@@ -54,15 +58,15 @@ export default function Navbar() {
 
         {/* Center — Logo */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-          <span className="font-serif text-2xl tracking-widest text-dark">
-            FERYA
-          </span>
+          <Logo size="md" />
         </Link>
 
-        {/* Right — Search + Cart */}
+        {/* Right — Language Toggle + Search + Cart */}
         <div className="flex items-center gap-5">
+          <LanguageToggle />
+
           {/* Search */}
-          <button className="text-dark hover:text-gold transition-colors" aria-label="Search">
+          <button className="text-dark hover:text-primary transition-colors" aria-label="Search">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -80,7 +84,7 @@ export default function Navbar() {
           </button>
 
           {/* Cart */}
-          <button className="text-dark hover:text-gold transition-colors" aria-label="Cart">
+          <button className="text-dark hover:text-primary transition-colors" aria-label="Cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
