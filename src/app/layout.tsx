@@ -1,33 +1,38 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ferya — Bespoke Event Design",
+  title: "Ferya Event & Decor — Bespoke Event Design",
   description:
     "Luxury bespoke event design studio specializing in custom stationery, signage, decor, and keepsakes.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans text-body antialiased">{children}</body>
+    <html lang={locale} className={cormorant.variable}>
+      <body className="font-sans text-body antialiased">
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }
