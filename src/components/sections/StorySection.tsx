@@ -22,6 +22,9 @@ export default async function StorySection() {
             <p className="mt-4 text-lg leading-relaxed text-body">
               {t("description2")}
             </p>
+            <p className="mt-4 text-lg leading-relaxed text-body">
+              {t("description3")}
+            </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6">
               <StatCard value={t("stat1Value")} label={t("stat1Label")} />

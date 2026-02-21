@@ -3,22 +3,16 @@ import { getTranslations } from "next-intl/server";
 
 const studioLinks = [
   { key: "ethos", href: "/ethos" },
-  { key: "services", href: "/services" },
-  { key: "process", href: "/process" },
-  { key: "press", href: "/press" },
 ] as const;
 
-const conciergeLinks = [
+const ordersLinks = [
   { key: "faq", href: "/faq" },
   { key: "policy", href: "/policy" },
-  { key: "privacy", href: "/privacy" },
-  { key: "imprint", href: "/imprint" },
 ] as const;
 
 const socialLinks = [
+  { label: "Facebook", href: "https://facebook.com" },
   { label: "Instagram", href: "https://instagram.com" },
-  { label: "Pinterest", href: "https://pinterest.com" },
-  { label: "TikTok", href: "https://tiktok.com" },
 ];
 
 export default async function Footer() {
@@ -62,13 +56,13 @@ export default async function Footer() {
             </ul>
           </div>
 
-          {/* Concierge */}
+          {/* Orders & Returns */}
           <div>
             <h4 className="mb-4 text-sm font-semibold tracking-[0.2em] uppercase text-primary">
-              {t("concierge")}
+              {t("orders")}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {conciergeLinks.map((link) => (
+              {ordersLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
