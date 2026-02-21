@@ -305,5 +305,42 @@
     "headingAccent": "Coming",
     "description": "We're putting the finishing touches on this page. Check back soon to explore our latest offerings.",
     "cta": "Return Home"
+  },
+  "Design": {
+    "meta": "Design — Ferya",
+    "metaDescription": "Explore Ferya's bespoke design collection — custom stationery, signage, and keepsakes.",
+    "label": "Our Designs",
+    "heading": "Bespoke ",
+    "headingAccent": "Designs",
+    "description": "Each piece is crafted from scratch to reflect your unique story, style, and cultural heritage. Browse our design collection below.",
+    "empty": "Our design collection is being curated. Check back soon for new pieces.",
+    "errorLoading": "We're having trouble loading our designs right now. Please try again shortly."
+  },
+  "Rentals": {
+    "meta": "Rentals — Ferya",
+    "metaDescription": "Browse Ferya's luxury event rental collection — signage, decor, and installations available for hire.",
+    "label": "Our Rentals",
+    "heading": "Luxury ",
+    "headingAccent": "Rentals",
+    "description": "Elevate your celebration with our curated collection of premium rental pieces — from signage to decorative installations.",
+    "empty": "Our rental collection is being curated. Check back soon for new pieces.",
+    "errorLoading": "We're having trouble loading our rentals right now. Please try again shortly."
+  },
+  "ProductDetail": {
+    "inquire": "Inquire About This Piece",
+    "variants": "Available Options",
+    "from": "From",
+    "relatedLabel": "You May Also Like",
+    "relatedHeading": "Related ",
+    "relatedHeadingAccent": "Pieces",
+    "notFound": "Product not found",
+    "backToShop": "Back to Shop"
+  },
+  "Search": {
+    "placeholder": "Search our collections...",
+    "noResults": "No results found for \"{query}\"",
+    "searching": "Searching...",
+    "close": "Close search",
+    "minChars": "Type at least 2 characters to search"
   }
 }

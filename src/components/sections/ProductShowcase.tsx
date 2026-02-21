@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { SectionLabel, SectionHeading, ProductCard } from "@/components/ui";
+import { slugify } from "@/lib/utils";
 
 export default async function ProductShowcase() {
   const t = await getTranslations("Showcase");
@@ -32,6 +33,7 @@ export default async function ProductShowcase() {
               category={t(`${p.key}Category`)}
               name={t(`${p.key}Name`)}
               price={t(`${p.key}Price`)}
+              href={`/shop/${slugify(t(`${p.key}Name`))}`}
             />
           ))}
         </div>
@@ -43,6 +45,7 @@ export default async function ProductShowcase() {
               category={t(`${p.key}Category`)}
               name={t(`${p.key}Name`)}
               price={t(`${p.key}Price`)}
+              href={`/shop/${slugify(t(`${p.key}Name`))}`}
             />
           ))}
         </div>

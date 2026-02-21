@@ -305,5 +305,42 @@
     "headingAccent": "Arrive",
     "description": "Nous mettons la touche finale à cette page. Revenez bientôt pour découvrir nos dernières offres.",
     "cta": "Retour à l'Accueil"
+  },
+  "Design": {
+    "meta": "Créations — Ferya",
+    "metaDescription": "Explorez la collection de créations sur mesure de Ferya — papeterie, signalétique et souvenirs personnalisés.",
+    "label": "Nos Créations",
+    "heading": "Créations ",
+    "headingAccent": "Sur Mesure",
+    "description": "Chaque pièce est conçue de zéro pour refléter votre histoire unique, votre style et votre héritage culturel. Parcourez notre collection ci-dessous.",
+    "empty": "Notre collection de créations est en cours de curation. Revenez bientôt pour découvrir de nouvelles pièces.",
+    "errorLoading": "Nous avons des difficultés à charger nos créations pour le moment. Veuillez réessayer sous peu."
+  },
+  "Rentals": {
+    "meta": "Locations — Ferya",
+    "metaDescription": "Parcourez la collection de location d'événements de luxe de Ferya — signalétique, décor et installations disponibles à la location.",
+    "label": "Nos Locations",
+    "heading": "Locations de ",
+    "headingAccent": "Luxe",
+    "description": "Sublimez votre célébration avec notre collection soignée de pièces premium en location — de la signalétique aux installations décoratives.",
+    "empty": "Notre collection de locations est en cours de curation. Revenez bientôt pour découvrir de nouvelles pièces.",
+    "errorLoading": "Nous avons des difficultés à charger nos locations pour le moment. Veuillez réessayer sous peu."
+  },
+  "ProductDetail": {
+    "inquire": "Se Renseigner Sur Cette Pièce",
+    "variants": "Options Disponibles",
+    "from": "À partir de",
+    "relatedLabel": "Vous Aimerez Aussi",
+    "relatedHeading": "Pièces ",
+    "relatedHeadingAccent": "Similaires",
+    "notFound": "Produit introuvable",
+    "backToShop": "Retour à la Boutique"
+  },
+  "Search": {
+    "placeholder": "Rechercher dans nos collections...",
+    "noResults": "Aucun résultat trouvé pour \"{query}\"",
+    "searching": "Recherche en cours...",
+    "close": "Fermer la recherche",
+    "minChars": "Saisissez au moins 2 caractères pour rechercher"
   }
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import MobileMenu from "./MobileMenu";
+import SearchOverlay from "./SearchOverlay";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import Logo from "@/components/ui/Logo";
 
@@ -15,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const t = useTranslations("Navbar");
 
   return (
@@ -66,7 +68,11 @@ export default function Navbar() {
           <LanguageToggle />
 
           {/* Search */}
-          <button className="text-dark hover:text-primary transition-colors" aria-label="Search">
+          <button
+            className="text-dark hover:text-primary transition-colors"
+            aria-label="Search"
+            onClick={() => setSearchOpen(true)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -105,6 +111,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+
+      {/* Search Overlay */}
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
