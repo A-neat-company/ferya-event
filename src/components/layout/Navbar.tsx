@@ -11,7 +11,6 @@ import Logo from "@/components/ui/Logo";
 const navLinks = [
   { key: "design", href: "/design" },
   { key: "rentals", href: "/rentals" },
-  { key: "gallery", href: "/gallery" },
 ] as const;
 
 export default function Navbar() {
