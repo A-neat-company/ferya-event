@@ -28,9 +28,3 @@ export interface Product {
   currency: string;
   featured: boolean;
 }
-
-export interface SearchResult {
-  products: Product[];
-  query: string;
-  total: number;
-}

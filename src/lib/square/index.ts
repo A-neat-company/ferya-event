@@ -4,7 +4,6 @@ export {
   getAllProducts,
   getFeaturedProducts,
   getProductBySlug,
-  searchProducts,
   getRelatedProducts,
   formatPrice,
   mapSquareItemToProduct,
@@ -13,5 +12,4 @@ export type {
   Product,
   ProductImage,
   ProductVariation,
-  SearchResult,
 } from "./types";

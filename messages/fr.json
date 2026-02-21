@@ -320,12 +320,5 @@
     "relatedHeadingAccent": "Similaires",
     "notFound": "Produit introuvable",
     "backToShop": "Retour à la Boutique"
-  },
-  "Search": {
-    "placeholder": "Rechercher dans nos collections...",
-    "noResults": "Aucun résultat trouvé pour \"{query}\"",
-    "searching": "Recherche en cours...",
-    "close": "Fermer la recherche",
-    "minChars": "Saisissez au moins 2 caractères pour rechercher"
   }
 }
