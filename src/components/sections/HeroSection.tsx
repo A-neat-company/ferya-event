@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { SectionLabel, CTAButton } from "@/components/ui";
+import { CTAButton } from "@/components/ui";
 
 export default async function HeroSection() {
   const t = await getTranslations("Hero");

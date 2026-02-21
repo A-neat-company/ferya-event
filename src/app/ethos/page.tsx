@@ -13,7 +13,7 @@ export default async function EthosPage() {
 
   return (
     <Layout>
-      {/* Hero */}
+      {/* Hero — Maison de création */}
       <section className="py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <SectionLabel>{t("label")}</SectionLabel>
@@ -25,12 +25,51 @@ export default async function EthosPage() {
         </div>
       </section>
 
-      {/* Philosophy */}
+      {/* Story */}
       <section className="pb-24">
         <div className="mx-auto max-w-3xl px-6 space-y-6">
           <p className="text-lg leading-relaxed text-body">{t("p1")}</p>
           <p className="text-lg leading-relaxed text-body">{t("p2")}</p>
           <p className="text-lg leading-relaxed text-body">{t("p3")}</p>
+          <p className="text-lg leading-relaxed text-body">{t("p4")}</p>
+          <p className="text-lg leading-relaxed text-body">{t("p5")}</p>
+          <p className="text-lg leading-relaxed text-body">{t("p6")}</p>
+        </div>
+      </section>
+
+      {/* Philosophy */}
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="text-center">
+            <SectionLabel>{t("philoLabel")}</SectionLabel>
+            <div className="mt-4">
+              <SectionHeading accent={t("philoHeadingAccent")}>
+                {t("philoHeading")}
+              </SectionHeading>
+            </div>
+          </div>
+          <p className="mt-8 text-lg leading-relaxed text-body text-center">
+            {t("philoText")}
+          </p>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="py-24">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="text-center">
+            <SectionLabel>{t("visionLabel")}</SectionLabel>
+            <div className="mt-4">
+              <SectionHeading accent={t("visionHeadingAccent")}>
+                {t("visionHeading")}
+              </SectionHeading>
+            </div>
+          </div>
+          <div className="mt-8 space-y-6">
+            <p className="text-lg leading-relaxed text-body text-center">{t("visionText1")}</p>
+            <p className="text-lg leading-relaxed text-body text-center">{t("visionText2")}</p>
+            <p className="text-lg leading-relaxed text-body text-center">{t("visionText3")}</p>
+          </div>
         </div>
       </section>
 

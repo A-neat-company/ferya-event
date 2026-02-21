@@ -8,19 +8,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: t("meta"), description: t("metaDescription") };
 }
 
+const categories = [
+  { key: "custom", questions: ["1", "2", "3"] },
+  { key: "materials", questions: ["4", "5"] },
+  { key: "timelines", questions: ["6", "7"] },
+  { key: "shipping", questions: ["8", "9", "10", "11"] },
+  { key: "returns", questions: ["12", "13"] },
+  { key: "errors", questions: ["14", "15"] },
+  { key: "service", questions: ["16", "17"] },
+] as const;
+
 export default async function FAQPage() {
   const t = await getTranslations("FAQ");
-
-  const questions = [
-    { key: "1" },
-    { key: "2" },
-    { key: "3" },
-    { key: "4" },
-    { key: "5" },
-    { key: "6" },
-    { key: "7" },
-    { key: "8" },
-  ] as const;
 
   return (
     <Layout>
@@ -35,13 +34,22 @@ export default async function FAQPage() {
             </div>
           </div>
 
-          <div className="mt-16">
-            {questions.map((q) => (
-              <AccordionItem
-                key={q.key}
-                question={t(`q${q.key}`)}
-                answer={t(`a${q.key}`)}
-              />
+          <div className="mt-16 space-y-12">
+            {categories.map((cat) => (
+              <div key={cat.key}>
+                <h3 className="mb-4 text-sm font-semibold tracking-[0.2em] uppercase text-primary">
+                  {t(`cat_${cat.key}`)}
+                </h3>
+                <div>
+                  {cat.questions.map((q) => (
+                    <AccordionItem
+                      key={q}
+                      question={t(`q${q}`)}
+                      answer={t(`a${q}`)}
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

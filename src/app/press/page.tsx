@@ -31,7 +31,7 @@ export default async function PressPage() {
                 {t("heading")}
               </SectionHeading>
             </div>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-body">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-body text-center">
               {t("description")}
             </p>
           </div>

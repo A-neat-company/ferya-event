@@ -54,8 +54,8 @@ export default function StatCard({ value, label }: StatCardProps) {
 
   return (
     <div ref={ref} className="text-center">
-      <p className="font-serif text-4xl text-dark">{display}</p>
-      <p className="mt-1 text-sm font-semibold tracking-[0.15em] uppercase text-primary">
+      <p className="font-serif text-4xl text-dark text-center">{display}</p>
+      <p className="mt-1 text-sm font-semibold tracking-[0.15em] uppercase text-primary text-center">
         {label}
       </p>
     </div>
