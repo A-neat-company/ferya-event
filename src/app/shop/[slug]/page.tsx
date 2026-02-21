@@ -4,8 +4,7 @@ import { Layout } from "@/components/layout";
 import { ImageGallery, ProductInfo, RelatedProducts } from "@/components/product";
 import { getAllProducts, getProductBySlug, getRelatedProducts } from "@/lib/square";
 
-export const revalidate = 300;
-export const dynamicParams = true;
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   try {
