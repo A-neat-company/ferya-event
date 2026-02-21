@@ -26,6 +26,7 @@ export interface Product {
   priceDisplay: string;
   minPriceCents: number;
   currency: string;
+  featured: boolean;
 }
 
 export interface SearchResult {

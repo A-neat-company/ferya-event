@@ -62,22 +62,7 @@
   "Showcase": {
     "label": "Nos Collections",
     "heading": "Créations ",
-    "headingAccent": "Vedettes",
-    "product1Category": "Suite d'Invitations",
-    "product1Name": "Collection Arabesque",
-    "product1Price": "À partir de 450 $",
-    "product2Category": "Panneau de Bienvenue",
-    "product2Name": "Miroir Arc Doré",
-    "product2Price": "À partir de 280 $",
-    "product3Category": "Suite Papeterie",
-    "product3Name": "Collection Florale",
-    "product3Price": "À partir de 380 $",
-    "product4Category": "Plan de Table",
-    "product4Name": "Tableau Calligraphié",
-    "product4Price": "À partir de 320 $",
-    "product5Category": "Souvenir",
-    "product5Name": "Calendrier de l'Avent Ramadan",
-    "product5Price": "À partir de 95 $"
+    "headingAccent": "Vedettes"
   },
   "WhyChoose": {
     "label": "Pourquoi Ferya",

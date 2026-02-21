@@ -62,22 +62,7 @@
   "Showcase": {
     "label": "Our Collections",
     "heading": "Featured ",
-    "headingAccent": "Designs",
-    "product1Category": "Invitation Suite",
-    "product1Name": "The Arabesque Collection",
-    "product1Price": "From $450",
-    "product2Category": "Welcome Sign",
-    "product2Name": "Gilded Arch Mirror",
-    "product2Price": "From $280",
-    "product3Category": "Stationery Suite",
-    "product3Name": "The Bloom Collection",
-    "product3Price": "From $380",
-    "product4Category": "Seating Chart",
-    "product4Name": "Calligraphy Board",
-    "product4Price": "From $320",
-    "product5Category": "Keepsake",
-    "product5Name": "Ramadan Advent Calendar",
-    "product5Price": "From $95"
+    "headingAccent": "Designs"
   },
   "WhyChoose": {
     "label": "Why Ferya",

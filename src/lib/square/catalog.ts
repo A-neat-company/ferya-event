@@ -113,6 +113,17 @@ export function mapSquareItemToProduct(
   const categoryId = data.categoryId ?? data.categories?.[0]?.id ?? "";
   const categoryName = categoryMap.get(categoryId) ?? "";
 
+  // Featured custom attribute (key is auto-generated, so iterate values)
+  let featured = false;
+  if (item.customAttributeValues) {
+    for (const attr of Object.values(item.customAttributeValues)) {
+      if (attr.name === "featured" && attr.type === "BOOLEAN") {
+        featured = attr.booleanValue ?? false;
+        break;
+      }
+    }
+  }
+
   return {
     id: item.id,
     slug: slugify(name),
@@ -126,6 +137,7 @@ export function mapSquareItemToProduct(
     priceDisplay,
     minPriceCents: minPrice,
     currency,
+    featured,
   };
 }
 
@@ -169,6 +181,11 @@ export async function getAllProducts(): Promise<Product[]> {
     getProductsByCategory(env.server.SQUARE_RENTALS_CATEGORY_ID),
   ]);
   return [...design, ...rental];
+}
+
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const products = await getAllProducts();
+  return products.filter((p) => p.featured);
 }
 
 export async function getProductBySlug(

@@ -2,6 +2,7 @@ export { getSquareClient } from "./client";
 export {
   getProductsByCategory,
   getAllProducts,
+  getFeaturedProducts,
   getProductBySlug,
   searchProducts,
   getRelatedProducts,
