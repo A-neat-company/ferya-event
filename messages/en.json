@@ -26,7 +26,8 @@
   },
   "Hero": {
     "label": "Bespoke Stationery & Decor",
-    "title": "The Art of Detail, Crafted by Hand",
+    "title1": "The Art of Detail",
+    "title2": "Crafted by Hand",
     "subtitle": "Luxury stationery, signage, decor & keepsakes for life's most meaningful celebrations.",
     "cta": "Explore Our Collections"
   },
@@ -77,7 +78,7 @@
     "headingAccent": "Journey",
     "description": "Ready to bring your vision to life? Whether you have a clear idea or need creative direction, we'd love to hear from you.",
     "email": "ferya.event@gmail.com",
-    "phone": "+1 (555) 123-4567",
+    "phone": "+1 (514) 824-5713",
     "location": "Available Worldwide",
     "formName": "Your Name",
     "formEmail": "Your Email",
@@ -338,7 +339,7 @@
     "emailLabel": "Email",
     "email": "ferya.event@gmail.com",
     "phoneLabel": "Phone",
-    "phone": "+1 (555) 123-4567",
+    "phone": "+1 (514) 824-5713",
     "websiteLabel": "Website",
     "website": "www.ferya.co",
     "disclaimer": "Disclaimer",

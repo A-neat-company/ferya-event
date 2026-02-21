@@ -26,7 +26,8 @@
   },
   "Hero": {
     "label": "Papeterie & Décor Sur Mesure",
-    "title": "L'Art du Détail, Façonné à la Main",
+    "title1": "L'Art du Détail",
+    "title2": "Façonné à la Main",
     "subtitle": "Papeterie de luxe, signalétique, décors et souvenirs pour les célébrations les plus significatives de la vie.",
     "cta": "Découvrir Nos Collections"
   },
@@ -77,7 +78,7 @@
     "headingAccent": "Aventure",
     "description": "Prêt(e) à donner vie à votre vision ? Que vous ayez une idée précise ou besoin de direction créative, nous serions ravis de vous entendre.",
     "email": "ferya.event@gmail.com",
-    "phone": "+1 (555) 123-4567",
+    "phone": "+1 (514) 824-5713",
     "location": "Disponible dans le monde entier",
     "formName": "Votre Nom",
     "formEmail": "Votre Email",
@@ -338,7 +339,7 @@
     "emailLabel": "Email",
     "email": "ferya.event@gmail.com",
     "phoneLabel": "Téléphone",
-    "phone": "+1 (555) 123-4567",
+    "phone": "+1 (514) 824-5713",
     "websiteLabel": "Site Web",
     "website": "www.ferya.co",
     "disclaimer": "Avertissement",
