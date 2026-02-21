@@ -45,6 +45,14 @@ export const env = {
     SQUARE_ENVIRONMENT: optional(process.env.SQUARE_ENVIRONMENT, "sandbox") as
       | "sandbox"
       | "production",
+    SQUARE_DESIGN_CATEGORY_ID: optional(
+      process.env.SQUARE_DESIGN_CATEGORY_ID,
+      "DESIGNS"
+    ),
+    SQUARE_RENTALS_CATEGORY_ID: optional(
+      process.env.SQUARE_RENTALS_CATEGORY_ID,
+      "RENTALS"
+    ),
 
     RESEND_API_KEY: required("RESEND_API_KEY", process.env.RESEND_API_KEY),
 

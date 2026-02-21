@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProductCardProps {
   alt: string;
@@ -6,6 +7,7 @@ interface ProductCardProps {
   name: string;
   price: string;
   href?: string;
+  imageSrc?: string;
 }
 
 export default function ProductCard({
@@ -14,14 +16,24 @@ export default function ProductCard({
   name,
   price,
   href,
+  imageSrc,
 }: ProductCardProps) {
   const card = (
     <div className="group">
-      {/* Placeholder image */}
-      <div className="aspect-[3/4] w-full rounded-lg bg-cream flex items-center justify-center overflow-hidden">
-        <span className="text-sm text-body/50 uppercase tracking-widest">
-          {alt}
-        </span>
+      <div className="aspect-[3/4] w-full rounded-lg bg-cream flex items-center justify-center overflow-hidden relative">
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={alt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <span className="text-sm text-body/50 uppercase tracking-widest">
+            {alt}
+          </span>
+        )}
       </div>
       <div className="mt-4">
         <p className="text-sm font-semibold tracking-[0.15em] uppercase text-primary">

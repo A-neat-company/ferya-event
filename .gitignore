@@ -24,5 +24,8 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Scripts (local dev utilities)
+scripts/
+
 # Vercel
 .vercel

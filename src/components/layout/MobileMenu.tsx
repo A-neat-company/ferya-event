@@ -9,7 +9,6 @@ const links = [
   { key: "home", href: "/" },
   { key: "design", href: "/design" },
   { key: "rentals", href: "/rentals" },
-  { key: "gallery", href: "/gallery" },
   { key: "ethos", href: "/ethos" },
   { key: "services", href: "/services" },
   { key: "process", href: "/process" },
