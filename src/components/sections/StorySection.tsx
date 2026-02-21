@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { SectionLabel, SectionHeading, StatCard } from "@/components/ui";
 
@@ -33,11 +34,13 @@ export default async function StorySection() {
             </div>
           </div>
 
-          {/* Placeholder image */}
-          <div className="aspect-[4/5] rounded-2xl bg-cream flex items-center justify-center">
-            <span className="text-sm text-body/50 uppercase tracking-widest">
-              Studio Image
-            </span>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+            <Image
+              src="/images/story-marriage-certificate.jpg"
+              alt="Bespoke marriage certificate by Ferya"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

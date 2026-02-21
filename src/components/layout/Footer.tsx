@@ -11,8 +11,8 @@ const ordersLinks = [
 ] as const;
 
 const socialLinks = [
-  { label: "Facebook", href: "https://facebook.com" },
-  { label: "Instagram", href: "https://instagram.com" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61575878904851" },
+  { label: "Instagram", href: "https://www.instagram.com/ferya.eventdecor/" },
 ];
 
 export default async function Footer() {
