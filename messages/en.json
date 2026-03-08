@@ -85,7 +85,10 @@
     "formEvent": "Event Type",
     "formDate": "Event Date",
     "formMessage": "Tell us about your vision...",
-    "formSubmit": "Send Inquiry"
+    "formSubmit": "Send Inquiry",
+    "formSending": "Sending...",
+    "formSuccess": "Your inquiry has been sent! We'll be in touch soon.",
+    "formError": "Something went wrong. Please try again."
   },
   "Ethos": {
     "meta": "About Us — Ferya",
