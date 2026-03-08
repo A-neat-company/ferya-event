@@ -85,7 +85,10 @@
     "formEvent": "Type d'Événement",
     "formDate": "Date de l'Événement",
     "formMessage": "Parlez-nous de votre vision...",
-    "formSubmit": "Envoyer la Demande"
+    "formSubmit": "Envoyer la Demande",
+    "formSending": "Envoi en cours...",
+    "formSuccess": "Votre demande a été envoyée ! Nous vous répondrons rapidement.",
+    "formError": "Une erreur est survenue. Veuillez réessayer."
   },
   "Ethos": {
     "meta": "Qui sommes-nous — Ferya",

@@ -5,6 +5,7 @@ interface CTAButtonProps {
   href?: string;
   variant?: "dark" | "primary";
   type?: "button" | "submit";
+  disabled?: boolean;
   className?: string;
 }
 
@@ -13,6 +14,7 @@ export default function CTAButton({
   href,
   variant = "dark",
   type = "button",
+  disabled,
   className = "",
 }: CTAButtonProps) {
   const base =
@@ -32,7 +34,7 @@ export default function CTAButton({
   }
 
   return (
-    <button type={type} className={classes}>
+    <button type={type} disabled={disabled} className={`${classes} disabled:opacity-50`}>
       {children}
     </button>
   );
