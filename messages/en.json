@@ -1,8 +1,7 @@
 {
   "Navbar": {
     "design": "Design",
-    "rentals": "Rentals",
-    "gallery": "Gallery"
+    "rentals": "Rentals"
   },
   "MobileMenu": {
     "home": "Home",
@@ -77,7 +76,7 @@
     "heading": "Start Your ",
     "headingAccent": "Journey",
     "description": "Ready to bring your vision to life? Whether you have a clear idea or need creative direction, we'd love to hear from you.",
-    "email": "ferya.event@gmail.com",
+    "email": "hello@ferya.ca",
     "phone": "+1 (514) 824-5713",
     "location": "Available Worldwide",
     "formName": "Your Name",
@@ -85,7 +84,10 @@
     "formEvent": "Event Type",
     "formDate": "Event Date",
     "formMessage": "Tell us about your vision...",
-    "formSubmit": "Send Inquiry"
+    "formSubmit": "Send Inquiry",
+    "formSending": "Sending...",
+    "formSuccess": "Your inquiry has been sent! We'll be in touch soon.",
+    "formError": "Something went wrong. Please try again."
   },
   "Ethos": {
     "meta": "About Us — Ferya",
@@ -337,7 +339,7 @@
     "address": "Studio 4, 123 Design Quarter\nNew York, NY 10001\nUnited States",
     "contactLabel": "Contact",
     "emailLabel": "Email",
-    "email": "ferya.event@gmail.com",
+    "email": "hello@ferya.ca",
     "phoneLabel": "Phone",
     "phone": "+1 (514) 824-5713",
     "websiteLabel": "Website",
@@ -375,11 +377,8 @@
   "ProductDetail": {
     "inquire": "Inquire About This Piece",
     "variants": "Available Options",
-    "from": "From",
     "relatedLabel": "You May Also Like",
     "relatedHeading": "Related ",
-    "relatedHeadingAccent": "Pieces",
-    "notFound": "Product not found",
-    "backToShop": "Back to Shop"
+    "relatedHeadingAccent": "Pieces"
   }
 }

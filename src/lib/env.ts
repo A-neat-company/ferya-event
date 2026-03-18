@@ -55,6 +55,10 @@ export const env = {
     ),
 
     RESEND_API_KEY: required("RESEND_API_KEY", process.env.RESEND_API_KEY),
+    CONTACT_TO_EMAIL: optional(
+      process.env.CONTACT_TO_EMAIL,
+      "hello@ferya.ca"
+    ),
 
     CLICKUP_API_TOKEN: required(
       "CLICKUP_API_TOKEN",
