@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     }
 
     await resend.emails.send({
-      from: "Ferya Event <onboarding@resend.dev>",
+      from: "Ferya Event <hello@ferya.ca>",
       to: env.server.CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `New Inquiry from ${name}`,
