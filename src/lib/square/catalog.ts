@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Square } from "square";
 import { getSquareClient } from "./client";
 import { env } from "@/lib/env";
@@ -24,20 +25,76 @@ function buildImageMap(
   return map;
 }
 
-function buildCategoryMap(
-  relatedObjects: Square.CatalogObject[] | undefined
-): Map<string, string> {
-  const map = new Map<string, string>();
-  for (const obj of relatedObjects ?? []) {
-    if (obj.type === "CATEGORY" && obj.id && obj.categoryData?.name) {
-      map.set(obj.id, obj.categoryData.name);
-    }
-  }
-  return map;
+// ---------------------------------------------------------------------------
+// Category hierarchy
+// ---------------------------------------------------------------------------
+
+interface CategoryHierarchy {
+  /** Display name for a category id. */
+  nameOf(id: string): string;
+  /** True if `targetId` is the category itself or any of its ancestors. */
+  isUnder(categoryId: string, targetId: string): boolean;
+  /** Every category id whose ancestor chain (incl. itself) contains `targetId`. */
+  descendantsOf(targetId: string): string[];
 }
 
-function resolveCatalogType(categoryId: string): "design" | "rental" {
-  if (categoryId === env.server.SQUARE_RENTALS_CATEGORY_ID) return "rental";
+/**
+ * Lists every catalog category once and builds the parent→child tree so we can
+ * fetch and classify items that live in nested sub-categories of Design/Rental.
+ * Wrapped in React `cache()` so multiple calls within one request share a fetch.
+ */
+const getCategoryHierarchy = cache(async (): Promise<CategoryHierarchy> => {
+  const client = getSquareClient();
+  const parent = new Map<string, string | undefined>();
+  const name = new Map<string, string>();
+
+  // `list` returns an async-iterable Page that auto-paginates.
+  const page = await client.catalog.list({ types: "CATEGORY" });
+  for await (const obj of page) {
+    if (obj.type !== "CATEGORY" || !obj.id) continue;
+    name.set(obj.id, obj.categoryData?.name ?? "");
+    parent.set(obj.id, obj.categoryData?.parentCategory?.id ?? undefined);
+  }
+
+  // Walk up the parent chain (cycle-guarded), collecting ancestors incl. self.
+  const ancestorsOf = (id: string): Set<string> => {
+    const out = new Set<string>();
+    let cur: string | undefined = id;
+    while (cur && !out.has(cur)) {
+      out.add(cur);
+      cur = parent.get(cur);
+    }
+    return out;
+  };
+
+  // Precompute the descendant set of every category in one pass: each category
+  // is registered against itself and all of its ancestors.
+  const descendants = new Map<string, Set<string>>();
+  for (const id of parent.keys()) {
+    for (const ancestor of ancestorsOf(id)) {
+      let set = descendants.get(ancestor);
+      if (!set) descendants.set(ancestor, (set = new Set()));
+      set.add(id);
+    }
+  }
+
+  return {
+    nameOf: (id) => name.get(id) ?? "",
+    isUnder: (categoryId, targetId) =>
+      categoryId === targetId ||
+      (descendants.get(targetId)?.has(categoryId) ?? false),
+    // Always include the target itself, even if it isn't a listed category.
+    descendantsOf: (targetId) => [...(descendants.get(targetId) ?? [targetId])],
+  };
+});
+
+function resolveCatalogType(
+  categoryId: string,
+  hierarchy: CategoryHierarchy
+): "design" | "rental" {
+  if (hierarchy.isUnder(categoryId, env.server.SQUARE_RENTALS_CATEGORY_ID)) {
+    return "rental";
+  }
   return "design";
 }
 
@@ -60,7 +117,7 @@ export function formatPrice(
 export function mapSquareItemToProduct(
   item: Square.CatalogObject,
   imageMap: Map<string, ProductImage>,
-  categoryMap: Map<string, string>
+  hierarchy: CategoryHierarchy
 ): Product | null {
   if (item.type !== "ITEM" || !item.itemData || !item.id) return null;
 
@@ -109,9 +166,14 @@ export function mapSquareItemToProduct(
     priceDisplay = `From ${formatPrice(minPrice, currency)}`;
   }
 
-  // Category
-  const categoryId = data.categoryId ?? data.categories?.[0]?.id ?? "";
-  const categoryName = categoryMap.get(categoryId) ?? "";
+  // Category — prefer Square's canonical "reporting" category, then the first
+  // assigned category, then the legacy single category id.
+  const categoryId =
+    data.reportingCategory?.id ??
+    data.categories?.[0]?.id ??
+    data.categoryId ??
+    "";
+  const categoryName = hierarchy.nameOf(categoryId);
 
   // Featured custom attribute (key is auto-generated, so iterate values)
   let featured = false;
@@ -131,7 +193,7 @@ export function mapSquareItemToProduct(
     description: data.descriptionPlaintext ?? data.descriptionHtml ?? "",
     categoryId,
     categoryName,
-    catalogType: resolveCatalogType(categoryId),
+    catalogType: resolveCatalogType(categoryId, hierarchy),
     images,
     variations,
     priceDisplay,
@@ -145,34 +207,48 @@ export function mapSquareItemToProduct(
 // Data access
 // ---------------------------------------------------------------------------
 
-export async function getProductsByCategory(
-  categoryId: string
+/**
+ * Resolves a set of catalog items into `Product`s: fetches their related image
+ * objects in one `batchGet` and maps each item through `mapSquareItemToProduct`.
+ */
+async function resolveProducts(
+  items: Square.CatalogObject[],
+  hierarchy: CategoryHierarchy
 ): Promise<Product[]> {
-  const client = getSquareClient();
-
-  const response = await client.catalog.searchItems({
-    categoryIds: [categoryId],
-    productTypes: ["REGULAR"],
-    sortOrder: "ASC",
-    limit: 100,
-  });
-
-  const items = response.items ?? [];
   if (items.length === 0) return [];
 
-  // Fetch related objects (images, categories) via batchGet
+  // Fetch related objects (images) via batchGet
   const allIds = items.map((i) => i.id).filter((id): id is string => !!id);
-  const batchResponse = await client.catalog.batchGet({
+  const batchResponse = await getSquareClient().catalog.batchGet({
     objectIds: allIds,
     includeRelatedObjects: true,
   });
 
   const imageMap = buildImageMap(batchResponse.relatedObjects);
-  const categoryMap = buildCategoryMap(batchResponse.relatedObjects);
 
   return items
-    .map((item) => mapSquareItemToProduct(item, imageMap, categoryMap))
+    .map((item) => mapSquareItemToProduct(item, imageMap, hierarchy))
     .filter((p): p is Product => p !== null);
+}
+
+export async function getProductsByCategory(
+  categoryId: string
+): Promise<Product[]> {
+  const client = getSquareClient();
+  const hierarchy = await getCategoryHierarchy();
+
+  // Expand the target category to itself plus every nested sub-category, since
+  // Square's `categoryIds` filter only matches items directly assigned.
+  const categoryIds = hierarchy.descendantsOf(categoryId);
+
+  const response = await client.catalog.searchItems({
+    categoryIds,
+    productTypes: ["REGULAR"],
+    sortOrder: "ASC",
+    limit: 100,
+  });
+
+  return resolveProducts(response.items ?? [], hierarchy);
 }
 
 export async function getAllProducts(): Promise<Product[]> {
@@ -197,6 +273,7 @@ export async function getProductBySlug(
 
 export async function searchProducts(query: string): Promise<Product[]> {
   const client = getSquareClient();
+  const hierarchy = await getCategoryHierarchy();
 
   const response = await client.catalog.searchItems({
     textFilter: query,
@@ -204,21 +281,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
     limit: 20,
   });
 
-  const items = response.items ?? [];
-  if (items.length === 0) return [];
-
-  const allIds = items.map((i) => i.id).filter((id): id is string => !!id);
-  const batchResponse = await client.catalog.batchGet({
-    objectIds: allIds,
-    includeRelatedObjects: true,
-  });
-
-  const imageMap = buildImageMap(batchResponse.relatedObjects);
-  const categoryMap = buildCategoryMap(batchResponse.relatedObjects);
-
-  return items
-    .map((item) => mapSquareItemToProduct(item, imageMap, categoryMap))
-    .filter((p): p is Product => p !== null);
+  return resolveProducts(response.items ?? [], hierarchy);
 }
 
 export async function getRelatedProducts(
